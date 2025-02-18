@@ -30,7 +30,7 @@ class LoginFormAuthenticator
             $siteConfig->getPasswordField() => $siteConfig->getPassword(),
         ] + $this->getExtraFields($siteConfig);
 
-        $this->browser->request('POST', $siteConfig->getLoginUri(), $postFields);
+        $this->browser->request('POST', $siteConfig->getLoginUri(), $postFields, [], $siteConfig->hasHttpHeaders() ? $siteConfig->getHttpHeaders() : []);
 
         return $this;
     }

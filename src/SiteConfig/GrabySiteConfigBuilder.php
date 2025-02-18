@@ -85,6 +85,7 @@ class GrabySiteConfigBuilder implements SiteConfigBuilder
             'notLoggedInXpath' => $config->not_logged_in_xpath ?: null,
             'username' => $credentials['username'],
             'password' => $credentials['password'],
+            'httpHeaders' => $this->processHeaders($config->http_header),
         ];
 
         $config = new SiteConfig($parameters);
@@ -123,6 +124,32 @@ class GrabySiteConfigBuilder implements SiteConfigBuilder
         }
 
         return $extraFields;
+    }
+
+    /**
+     * Processes http_header(*) config, prepending http- string to the header's name.
+     * See : https://github.com/symfony/browser-kit/blob/03cce39764429e07fbab9b989a1182a24578341d/HttpBrowser.php#L108.
+     *
+     * @param array|mixed $configHeaders
+     *
+     * @return array
+     */
+    protected function processHeaders($configHeaders)
+    {
+        if (!\is_array($configHeaders)) {
+            return [];
+        }
+
+        $headers = [];
+        foreach ($configHeaders as $headerName => $headerValue) {
+            if (str_starts_with($headerValue, 'http-')) {
+                $headers[$headerName] = $headerValue;
+            } else {
+                $headers["http-$headerName"] = $headerValue;
+            }
+        }
+
+        return $headers;
     }
 
     private function getUser()
