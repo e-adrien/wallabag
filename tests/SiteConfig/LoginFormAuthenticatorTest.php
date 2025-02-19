@@ -194,7 +194,7 @@ class LoginFormAuthenticatorTest extends TestCase
             'username' => 'johndoe',
             'password' => 'unkn0wn',
             'httpHeaders' => [
-                'user-agent' => 'Wallabag (Guzzle/5)',
+                'HTTP_user-agent' => 'Wallabag (Guzzle/5)',
             ],
         ]);
 
@@ -214,7 +214,7 @@ class LoginFormAuthenticatorTest extends TestCase
                 ]),
                 $this->equalTo([]),
                 $this->equalTo([
-                    'user-agent' => 'Wallabag (Guzzle/5)',
+                    'HTTP_user-agent' => 'Wallabag (Guzzle/5)',
                 ]),
             )
         ;

@@ -268,31 +268,15 @@ class SiteConfig
         return $this;
     }
 
-    /**
-     * @return array
-     */
-    public function getHttpHeaders()
+    public function getHttpHeaders(): array
     {
         return $this->httpHeaders;
     }
 
-    /**
-     * @param array $httpHeaders
-     *
-     * @return SiteConfig
-     */
-    public function setHttpHeaders($httpHeaders)
+    public function setHttpHeaders(array $httpHeaders): self
     {
         $this->httpHeaders = $httpHeaders;
 
         return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasHttpHeaders()
-    {
-        return !empty($this->httpHeaders);
     }
 }

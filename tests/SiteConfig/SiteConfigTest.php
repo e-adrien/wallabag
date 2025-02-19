@@ -38,7 +38,7 @@ class SiteConfigTest extends TestCase
             'username' => 'johndoe',
             'password' => 'unkn0wn',
             'httpHeaders' => [
-                'user-agent' => 'Wallabag (Guzzle/5)',
+                'HTTP_user-agent' => 'Wallabag (Guzzle/5)',
             ],
         ]);
 

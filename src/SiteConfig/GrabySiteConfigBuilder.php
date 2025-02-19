@@ -127,26 +127,14 @@ class GrabySiteConfigBuilder implements SiteConfigBuilder
     }
 
     /**
-     * Processes http_header(*) config, prepending http- string to the header's name.
-     * See : https://github.com/symfony/browser-kit/blob/03cce39764429e07fbab9b989a1182a24578341d/HttpBrowser.php#L108.
-     *
-     * @param array|mixed $configHeaders
-     *
-     * @return array
+     * Processes http_header(*) config, prepending HTTP_ string to the header's name.
+     * See : https://github.com/symfony/browser-kit/blob/5.4/AbstractBrowser.php#L349.
      */
-    protected function processHeaders($configHeaders)
+    protected function processHeaders(array $configHeaders): array
     {
-        if (!\is_array($configHeaders)) {
-            return [];
-        }
-
         $headers = [];
         foreach ($configHeaders as $headerName => $headerValue) {
-            if (str_starts_with($headerValue, 'http-')) {
-                $headers[$headerName] = $headerValue;
-            } else {
-                $headers["http-$headerName"] = $headerValue;
-            }
+            $headers["HTTP_$headerName"] = $headerValue;
         }
 
         return $headers;
