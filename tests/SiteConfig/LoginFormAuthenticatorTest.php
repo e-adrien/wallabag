@@ -194,7 +194,7 @@ class LoginFormAuthenticatorTest extends TestCase
             'username' => 'johndoe',
             'password' => 'unkn0wn',
             'httpHeaders' => [
-                'HTTP_user-agent' => 'Wallabag (Guzzle/5)',
+                'user-agent' => 'Wallabag (Guzzle/5)',
             ],
         ]);
 
